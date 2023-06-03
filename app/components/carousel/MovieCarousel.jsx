@@ -54,9 +54,7 @@ const MovieCarousel = ({ homeMoviesData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0] }) => {
             {
                 homeMoviesData.map((item, index) => (
                     <div key={index} className='relative bg-zinc-700 text-white border-[10px] rounded-lg border-zinc-700 w-[250px] h-[350px]' >
-                        <Image
-                            loader={() => IMAGE_BASE_URL + item?.poster_path}
-                            src={IMAGE_BASE_URL + item?.poster_path} alt="backdrop image" className='peer rounded-lg object-cover' width={250} height={350} />
+                        <img src={IMAGE_BASE_URL + item?.poster_path} alt="backdrop image" className='peer rounded-lg object-cover' width={250} height={350} />
                         <div className="absolute peer-hover:block hover:block transition-opacity duration-150 hidden bg-slate-800/60 w-full text-center text-base font-semibold bottom-5 left-1/2 -translate-x-1/2">{item?.title}</div>
                     </div>
                 ))
