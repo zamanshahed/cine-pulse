@@ -20,17 +20,6 @@ export default function Home() {
       Hey mom, i am coding the Cine Pulse
       <MovieCarousel homeMoviesData={homeMovies} />
 
-      <div>
-        {
-          homeMovies?.map((item, index) => (
-            <div key={index}>{item?.original_title ?? "NA"}</div>
-          ))
-        }
-      </div>
-
-      <button
-        onClick={getHomeMovies}
-      >SPLASH !</button>
     </div>
   )
 }
