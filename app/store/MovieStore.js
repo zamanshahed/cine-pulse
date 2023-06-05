@@ -10,6 +10,9 @@ const useMovieStore = create((set) => ({
     movieDetails: {},
     setMovieDetails: (details) => set(() => ({ movieDetails: details })),
 
+    movieDetailsVideos: [],
+    setMovieDetailsVideos: (details) => set(() => ({ movieDetailsVideos: details })),
+
 }))
 
 export default useMovieStore
