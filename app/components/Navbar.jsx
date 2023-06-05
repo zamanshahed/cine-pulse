@@ -39,7 +39,6 @@ const Navbar = () => {
                                 <div className='text-gray-300 cursor-pointer'>Tv Series</div>
                             </Link>
                         </div>
-                        <div className='bg-rose-500 h-[2px] mt-3'></div>
                     </>
                     : ""}
             </div>
