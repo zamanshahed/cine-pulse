@@ -1,4 +1,5 @@
 'use client'
+import Link from 'next/link';
 import { useState } from 'react';
 import { AiOutlineSearch, AiOutlineMenu, AiOutlineClose } from 'react-icons/ai'
 
@@ -12,7 +13,9 @@ const Navbar = () => {
             {/* small screen navbar: (smaller than 1024px)*/}
             <div className={`flex flex-col lg:hidden ${isMenuOpen ? "h-[250px]" : "h-[40px]"} transition-all duration-300 px-1`}>
                 <div className="flex items-center w-full justify-between sm:px-10 px-5 ">
-                    <div className="text-3xl font-bold cursor-pointer">CINE <span className='text-rose-500'>PULSE</span></div>
+                    <Link href={'/'} >
+                        <div className="text-3xl font-bold cursor-pointer">CINE <span className='text-rose-500'>PULSE</span></div>
+                    </Link>
 
                     <div
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -26,9 +29,15 @@ const Navbar = () => {
                     <>
                         <div className='bg-rose-500 h-[2px] mt-3'></div>
                         <div className="flex flex-col items-start justify-center space-y-5 mt-5">
-                            <div className='text-gray-300 cursor-pointer'>Home</div>
-                            <div className='text-gray-300 cursor-pointer'>Movies</div>
-                            <div className='text-gray-300 cursor-pointer'>Tv Series</div>
+                            <Link href={'/'} >
+                                <div className='text-gray-300 cursor-pointer'>Home</div>
+                            </Link>
+                            <Link href={'/movies'} >
+                                <div className='text-gray-300 cursor-pointer'>Movies</div>
+                            </Link>
+                            <Link href={'/tv-series'} >
+                                <div className='text-gray-300 cursor-pointer'>Tv Series</div>
+                            </Link>
                         </div>
                     </>
                     : ""}
@@ -38,11 +47,20 @@ const Navbar = () => {
             {/* desktop nav bar (1024px and higher) */}
             <div className="max-w-7xl w-full mx-auto lg:block hidden">
                 <div className="w-full flex justify-between items-center">
-                    <div className="text-4xl font-bold cursor-pointer">CINE <span className='text-rose-500'>PULSE</span></div>
+                    <Link href={'/'} >
+                        <div className="text-4xl font-bold cursor-pointer">CINE <span className='text-rose-500'>PULSE</span></div>
+                    </Link>
                     <div className='flex space-x-10 text-gray-300'>
-                        <div className='cursor-pointer'>Home</div>
-                        <div className='cursor-pointer'>Movies</div>
-                        <div className='cursor-pointer'>Tv Series</div>
+                        <Link href={'/'} >
+                            <div className='cursor-pointer'>Home</div>
+                        </Link>
+                        <Link href={'/movies'} >
+                            <div className='cursor-pointer'>Movies</div>
+                        </Link>
+                        <Link href={'/tv-series'} >
+                            <div className='cursor-pointer'>Tv Series</div>
+                        </Link>
+
                     </div>
                     <div className='text-gray-300 cursor-pointer flex items-center space-x-3'><span>Search</span> <AiOutlineSearch size={20} /> </div>
                 </div>
