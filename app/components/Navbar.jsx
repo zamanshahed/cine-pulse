@@ -45,7 +45,7 @@ const Navbar = () => {
 
 
             {/* desktop nav bar (1024px and higher) */}
-            <div className="max-w-7xl w-full mx-auto lg:block hidden">
+            <div className="max-w-7xl w-full mx-auto lg:block hidden px-5">
                 <div className="w-full flex justify-between items-center">
                     <Link href={'/'} >
                         <div className="text-4xl font-bold cursor-pointer">CINE <span className='text-rose-500'>PULSE</span></div>
