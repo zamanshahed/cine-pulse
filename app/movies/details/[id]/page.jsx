@@ -6,14 +6,13 @@ import { formatDate, getLanguageName, minuteToHours } from "@/app/utils/UtilityF
 import YouTube from 'react-youtube';
 import { useEffect } from "react"
 import { FcRating } from 'react-icons/fc'
+import MovieGallery from "./MovieGallery";
 
 const MovieDetails = ({ params }) => {
     const { movieDetails, movieDetailsVideos } = useMovieStore();
 
     useEffect(() => {
         getMovieDetails(params.id);
-
-
     }, [params.id]);
 
     const genresFound = movieDetails?.genres?.map(obj => obj.name);
@@ -41,23 +40,14 @@ const MovieDetails = ({ params }) => {
 
     return (
         <div className="relative" >
-            {/* <div className="h-[1350] w-[1250] blur-sm absolute top-0 left-0">
-                <img
-                    src={IMAGE_BASE_URL + movieDetails?.backdrop_path}
-                    alt="backdrop image"
-                    className='rounded-lg opacity-20'
-                    width={1250}
-                    height={1350}
-                />
-            </div> */}
             {/*r         title */}
-            <div className="text-3xl lg:text-5xl font-semibold uppercase text-rose-500">{movieDetails?.title}</div>
+            <div className="text-3xl lg:text-5xl font-extralight uppercase text-rose-500">{movieDetails?.title}</div>
             {movieDetails?.tagline ? <div className="text-base font-light">{movieDetails?.tagline}</div> : ""}
 
             {/*b         poster -- details -- trailer/video */}
-            <div className="flex flex-col xl:flex-row xl:justify-between pt-4 sm:pt-6 xl:pt-10 space-y-5">
+            <div className="flex flex-col xl:flex-row xl:items-start xl:justify-between pt-4 sm:pt-6 xl:pt-10 space-y-5 xl:space-y-0">
 
-                <div className="flex flex-col sm:flex-row sm:space-x-5 space-y-5">
+                <div className="flex flex-col sm:flex-row sm:items-start sm:space-x-5 space-y-5 sm:space-y-0">
                     {/*e            poster */}
                     <div>
                         <img src={IMAGE_BASE_URL + movieDetails?.poster_path} alt="backdrop image" className='peer rounded-lg object-cover' width={250} height={350} />
@@ -65,7 +55,7 @@ const MovieDetails = ({ params }) => {
 
                     {/*g             details */}
                     <div className="space-y-2">
-                        <div className="flex items-center space-x-2">
+                        <div className="flex items-start space-x-2">
                             <FcRating size={24} />
                             <div>{parseFloat(movieDetails?.vote_average).toFixed(1)}</div>
                             <div>( {movieDetails?.vote_count} )</div>
@@ -88,7 +78,7 @@ const MovieDetails = ({ params }) => {
                         </div>
                     </div>
                 </div>
-                <div>
+                <div className="flex items-start bg-black h-[250px] w-[320px] sm:h-[375px] sm:w-[600px] ">
                     {/* VIDEO: {mainTrailer?.name} */}
                     <div className="hidden sm:block" >
                         <YouTube videoId={mainTrailer?.key} opts={opts} />
@@ -97,6 +87,10 @@ const MovieDetails = ({ params }) => {
                         <YouTube videoId={mainTrailer?.key} opts={opts_small} />
                     </div>
                 </div>
+            </div>
+            <div className="pt-10">
+                <div className="text-3xl pb-5 font-extralight">Gallery</div>
+                <MovieGallery />
             </div>
         </div>
     )
