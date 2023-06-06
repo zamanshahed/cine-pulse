@@ -2,13 +2,23 @@
 import { IMAGE_BASE_URL, IMAGE_BASE_URL_HD } from '@/app/api/Config';
 import useMovieStore from '@/app/store/MovieStore';
 import React, { useEffect, useState } from 'react'
-import ImageGallery from 'react-image-gallery';
-import "react-image-gallery/styles/css/image-gallery.css";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 
 const MovieGallery = () => {
     const { movieDetailsImages } = useMovieStore();
     const [movieImages, setMovieImages] = useState([]);
+
+    // slider settings
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1
+    };
 
     useEffect(() => {
         const t_array = [];
@@ -16,7 +26,7 @@ const MovieGallery = () => {
         movieDetailsImages?.map((item) => {
             counter++;
             let data = {
-                original: IMAGE_BASE_URL + item?.file_path,
+                original: IMAGE_BASE_URL_HD + item?.file_path,
                 thumbnail: IMAGE_BASE_URL + item?.file_path,
             }
             if (counter < 6)
@@ -32,7 +42,14 @@ const MovieGallery = () => {
                 console.log('movie images(movieImages): ', movieImages);
             }}
         >
-            <ImageGallery items={movieImages} />
+            {/* <ImageGallery items={movieImages} /> */}
+            <Slider {...settings}>
+                {movieImages.map((item) => (
+                    <div key={item.original} className='w-full max-h-[700px]' >
+                        <img src={item.original} alt={item.original} className='w-full h-full object-cover' />
+                    </div>
+                ))}
+            </Slider>
         </div>
     )
 }
