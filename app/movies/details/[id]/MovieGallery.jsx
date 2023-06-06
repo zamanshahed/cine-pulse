@@ -16,7 +16,7 @@ const MovieGallery = () => {
         movieDetailsImages?.map((item) => {
             counter++;
             let data = {
-                original: IMAGE_BASE_URL_HD + item?.file_path,
+                original: IMAGE_BASE_URL + item?.file_path,
                 thumbnail: IMAGE_BASE_URL + item?.file_path,
             }
             if (counter < 6)
