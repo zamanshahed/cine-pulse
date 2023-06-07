@@ -41,11 +41,12 @@ const MovieGallery = () => {
                 console.log('movie images: ', movieDetailsImages);
                 console.log('movie images(movieImages): ', movieImages);
             }}
+            className='w-[330px] sm:w-full mx-auto '
         >
             {/* <ImageGallery items={movieImages} /> */}
             <Slider {...settings}>
                 {movieImages.map((item) => (
-                    <div key={item.original} className='w-full max-h-[700px]' >
+                    <div key={item.original} className='sm:w-full w-[320px] max-h-[700px]' >
                         <img src={item.original} alt={item.original} className='w-full h-full object-cover' />
                     </div>
                 ))}
