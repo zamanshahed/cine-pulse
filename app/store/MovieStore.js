@@ -1,11 +1,14 @@
 import axios from 'axios';
 import { create } from 'zustand'
-import { API_KEY, MOVIE_DETAILS_BASE_URL } from '../api/Config';
+import { API_KEY, MOVIE_DETAILS_BASE_URL, SEARCH_BASE_URL } from '../api/Config';
 
 const useMovieStore = create((set) => ({
     bears: 0,
     increasePopulation: () => set((state) => ({ bears: state.bears + 1 })),
     removeAllBears: () => set({ bears: 0 }),
+
+    movieSearchResults: [],
+    setMovieSearchResults: (details) => set(() => ({ movieSearchResults: details })),
 
     movieDetails: {},
     setMovieDetails: (details) => set(() => ({ movieDetails: details })),
@@ -22,6 +25,7 @@ const useMovieStore = create((set) => ({
 }))
 
 export default useMovieStore
+
 
 export const getMovieDetails = async (movie_id) => {
     const { setMovieDetails, setMovieDetailsVideos, setMovieDetailsImages, setMovieDetailsReviews } = useMovieStore.getState();
@@ -42,6 +46,24 @@ export const getMovieDetails = async (movie_id) => {
             setMovieDetailsVideos(res_videos.data.results);
             setMovieDetailsImages(res_images.data.backdrops);
             setMovieDetailsReviews(res_images.data.results);
+        }
+
+    } catch (error) {
+        console.log(error);
+    }
+
+}
+
+export const searchMovies = async (query) => {
+    const { setMovieSearchResults } = useMovieStore.getState();
+
+    try {
+        const res = await axios.get(SEARCH_BASE_URL + query);
+
+        console.log('movie search response::::', res.data);
+
+        if (res.data) {
+            setMovieSearchResults(res.data);
         }
 
     } catch (error) {
