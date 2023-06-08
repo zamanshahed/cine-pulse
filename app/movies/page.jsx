@@ -1,6 +1,17 @@
-import React from 'react'
+'use client'
+import React, { useState } from 'react'
+import useMovieStore, { searchMovies } from '../store/MovieStore';
+import { SearchResults } from '../components/search/SearchResults';
 
 const AllMovies = () => {
+  const [searchText, setSearchText] = useState("");
+  const { movieSearchResults } = useMovieStore();
+
+  const handleSearch = () => {
+    if (searchText) {
+      searchMovies(searchText);
+    }
+  }
   return (
     <div className='relative'>
       <img
@@ -15,10 +26,22 @@ const AllMovies = () => {
       >
         <input
           placeholder='Search for a movie'
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
           type="search"
           name=""
           id=""
           className='w-full h-[50px] md:h-[80px] rounded-lg bg-transparent text-white px-4 text-xl md:text-2xl outline-none'
+        />
+
+        <div className="flex justify-center pt-5">
+          <button
+            onClick={handleSearch}
+            className='bg-rose-500 px-5 py-2 rounded-md uppercase font-semibold'
+          >Search</button>
+        </div>
+        <SearchResults
+          data={movieSearchResults}
         />
       </div>
     </div>
