@@ -17,7 +17,7 @@ export default function Home() {
         console.log(typeof (homeMovies));
       }}
     >
-      Hey mom, i am coding the Cine Pulse
+      {/* Hey mom, i am coding the Cine Pulse */}
       <MovieCarousel homeMoviesData={homeMovies} />
 
     </div>
