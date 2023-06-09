@@ -21,7 +21,8 @@ const AllMovies = () => {
       />
 
       <div className="absolute top-[22%] w-full text-center text-xl md:text-5xl uppercase font-extralight text-white drop-shadow">M o v i e s</div>
-      <div
+      <form
+        onSubmit={(e) => e.preventDefault()}
         className='absolute top-[40%] left-1/2 -translate-x-1/2 border-2 border-neutral-600 w-full h-[50px] md:h-[80px] rounded-lg backdrop-blur-xl'
       >
         <input
@@ -43,7 +44,7 @@ const AllMovies = () => {
         <SearchResults
           data={movieSearchResults}
         />
-      </div>
+      </form>
     </div>
   )
 }

@@ -4,12 +4,14 @@ import { IMAGE_BASE_URL } from "@/app/api/Config"
 import useMovieStore, { getMovieDetails } from "@/app/store/MovieStore"
 import { formatDate, getLanguageName, minuteToHours } from "@/app/utils/UtilityFunctions"
 import YouTube from 'react-youtube';
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { FcRating } from 'react-icons/fc'
 import MovieGallery from "./MovieGallery";
+import TextTruncate from 'react-text-truncate';
 
 const MovieDetails = ({ params }) => {
     const { movieDetails, movieDetailsVideos } = useMovieStore();
+    const [showFullText, setShowFullText] = useState(false);
 
     useEffect(() => {
         getMovieDetails(params.id);
@@ -74,7 +76,20 @@ const MovieDetails = ({ params }) => {
                         </div>
 
                         <div className="pt-2 sm:w-[300px]">
-                            {movieDetails?.overview}
+                            {!showFullText ? <TextTruncate
+                                line={7}
+                                element="span"
+                                truncateText="…"
+                                text={movieDetails?.overview}
+                                textTruncateChild={<span className="text-rose-400 cursor-pointer" onClick={() => setShowFullText(true)}>Show more</span>}
+                            />
+                                :
+                                <>
+                                    {movieDetails?.overview}
+                                    <span className="text-rose-400 cursor-pointer pl-1" onClick={() => setShowFullText(false)}>Show less</span>
+                                </>
+                            }
+
                         </div>
                     </div>
                 </div>
