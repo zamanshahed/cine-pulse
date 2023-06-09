@@ -9,11 +9,11 @@ export const SearchResults = ({
             onClick={() => {
                 console.log('data: ', data);
             }}
-            className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4'
+            className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 pt-10'
         >
             {
                 data?.results?.map((item, index) => {
-                    return <MovieCard key={index} data={item} />
+                    return item?.poster_path && <MovieCard key={index} data={item} />
                 })
             }
         </div>
