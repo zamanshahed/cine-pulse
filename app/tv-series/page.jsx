@@ -44,7 +44,7 @@ const AllTvSeries = () => {
             className='bg-rose-500 px-5 py-2 md:py-4 md:px-8 rounded-md uppercase font-semibold'
           >Search</button>
         </div>
-        <SearchResults data={tvSeriesSearchResults} />
+        <SearchResults data={tvSeriesSearchResults} is_movie={false} />
       </form>
     </div>
   )
