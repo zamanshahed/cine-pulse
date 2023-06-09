@@ -4,7 +4,7 @@ import React from 'react'
 
 const TvSeriesCard = ({ data }) => {
     return (
-        <Link href={`/movies/details/${data.id}`}>
+        <Link href={`/tv-series/details/${data.id}`}>
             <img
                 className='rounded-lg w-[250px] h-[350px]'
                 src={IMAGE_BASE_URL + data?.poster_path}
