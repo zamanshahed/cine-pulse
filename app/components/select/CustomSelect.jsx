@@ -42,11 +42,10 @@ const CustomSelect = ({
     }, [value]);
     return (
         <div>
-            <div>Custom Select</div>
             <div
                 onClick={() => setShowDropDown(!showDropDown)}
                 className={`relative  ${width}`}
-                // onBlur={() => setShowDropDown(false)}
+            // onBlur={() => setShowDropDown(false)}
             >
                 <input
                     onClick={(e) => { e.preventDefault(); }}
