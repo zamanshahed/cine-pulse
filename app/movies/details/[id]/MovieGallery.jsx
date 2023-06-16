@@ -21,6 +21,7 @@ const MovieGallery = () => {
     };
 
     useEffect(() => {
+        setMovieImages([]);
         const t_array = [];
         let counter = 0;
         movieDetailsImages?.map((item) => {

@@ -1,6 +1,9 @@
 import axios from 'axios';
 import { create } from 'zustand'
 import { API_KEY, MOVIE_DETAILS_BASE_URL, SEARCH_BASE_URL } from '../api/Config';
+import useUtilityStore from './UtilityStore';
+
+const { setIsLoading } = useUtilityStore.getState();
 
 const useMovieStore = create((set) => ({
     bears: 0,
@@ -31,6 +34,7 @@ export const getMovieDetails = async (movie_id) => {
     const { setMovieDetails, setMovieDetailsVideos, setMovieDetailsImages, setMovieDetailsReviews } = useMovieStore.getState();
 
     try {
+        setIsLoading(true);
         const res = await axios.get(MOVIE_DETAILS_BASE_URL + `movie/${movie_id}?api_key=${API_KEY}`);
         const res_videos = await axios.get(MOVIE_DETAILS_BASE_URL + `movie/${movie_id}/videos?api_key=${API_KEY}`);
         const res_images = await axios.get(MOVIE_DETAILS_BASE_URL + `movie/${movie_id}/images?api_key=${API_KEY}`);
@@ -47,7 +51,7 @@ export const getMovieDetails = async (movie_id) => {
             setMovieDetailsImages(res_images.data.backdrops);
             setMovieDetailsReviews(res_images.data.results);
         }
-
+        setIsLoading(false);
     } catch (error) {
         console.log(error);
     }
@@ -58,6 +62,7 @@ export const searchMovies = async (query) => {
     const { setMovieSearchResults } = useMovieStore.getState();
 
     try {
+        setIsLoading(true);
         const res = await axios.get(SEARCH_BASE_URL + query);
 
         console.log('movie search response::::', res.data);
@@ -65,7 +70,7 @@ export const searchMovies = async (query) => {
         if (res.data) {
             setMovieSearchResults(res.data);
         }
-
+        setIsLoading(false);
     } catch (error) {
         console.log(error);
     }
