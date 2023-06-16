@@ -22,6 +22,7 @@ const TvSeriesGallery = () => {
 
     useEffect(() => {
         const t_array = [];
+        setMovieImages([]);
         let counter = 0;
         tvSeriesGallery?.map((item) => {
             counter++;
