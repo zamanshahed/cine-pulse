@@ -51,6 +51,9 @@ const CustomSelect = ({
                     onClick={(e) => { e.preventDefault(); }}
                     type="text"
                     value={selectedLabel}
+                    onChange={(e) => {
+                        // 
+                    }}
                     required={required}
                     title="Select a value from the options"
                     onInvalid={(e) => {
