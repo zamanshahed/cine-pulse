@@ -2,14 +2,14 @@
 import moment from 'moment'
 import { useEffect, useState } from 'react';
 import { MdKeyboardArrowRight } from 'react-icons/md'
+import { AiOutlineCloseCircle } from 'react-icons/ai'
 
 const CustomCalendar = () => {
   let weekdays = moment.weekdaysShort()
   const [currentDate, setCurrentDate] = useState(moment().startOf('month'));
-  const [currentMonth, setCurrentMonth] = useState();
-  // const [startDateOfTheMonth, setStartDateOfTheMonth] = useState(currentDate?.startOf('month').format('d'));
-  // const [endDateOfTheMonth, setEndDateOfTheMonth] = useState(currentDate?.endOf('month').format('D'));
   const [calendarObject, setCalendarObject] = useState([]);
+  const [showEventDetails, setShowEventDetails] = useState(false);
+  const [eventData, setEventData] = useState(null);
 
   const initializeCalendar = () => {
     console.log("initializeCalendar:::");
@@ -21,7 +21,7 @@ const CustomCalendar = () => {
 
     for (let i = 0; i < 42; i++) {
       if (i > (startDateOfTheMonth - 1))
-        monthObject.push({ index: i, date: (i - (startDateOfTheMonth - 1)) <= endDateOfTheMonth ? i - (startDateOfTheMonth - 1) : 0 });
+        monthObject.push({ index: i, date: (i - (startDateOfTheMonth - 1)) <= endDateOfTheMonth ? i - (startDateOfTheMonth - 1) : 0, event: [{ title: 'one', desc: 'lorem ipsum dolor sit amet' }, { title: 'two', desc: 'lorem ipsum dolor sit amet' }, { title: 'three', desc: 'lorem ipsum dolor sit amet' }] });
       else {
         monthObject.push({ index: i, date: 0 });
       }
@@ -38,7 +38,9 @@ const CustomCalendar = () => {
       totalWeeks.push(week);
     }
 
-    console.log(monthObject);
+    // console.log(monthObject);
+    if (totalWeeks[5][0].date == 0) totalWeeks.pop();
+
     console.log(totalWeeks);
     setCalendarObject(totalWeeks);
   }
@@ -47,33 +49,24 @@ const CustomCalendar = () => {
     setCurrentDate(currentDate.add(1, 'months').startOf('month'));
     console.log("nextMonthHandler:::", currentDate);
 
-    initializeUtils();
     initializeCalendar();
   }
   const prevMonthHandler = () => {
     setCurrentDate(currentDate.subtract(1, 'months').startOf('month'));
     console.log("prevMonthHandler:::", currentDate);
 
-    initializeUtils();
     initializeCalendar();
   }
 
-  const initializeUtils = async () => {
-    console.log("initializeUtils:::");
-    await setCurrentMonth(currentDate.format('M'));
-    // await setStartDateOfTheMonth(currentDate.startOf('month').format('d'));
-    // await setEndDateOfTheMonth(currentDate.endOf('month').format('D'));
-  }
-
   useEffect(() => {
-    initializeUtils();
-
     initializeCalendar();
   }, [currentDate]);
 
   return (
     <div>
-      <div>{weekdays}</div>
+      <div
+        className='bg-cyan-500 text-white text-center p-2 rounded-md'
+      >{weekdays}</div>
       <div>Current Month: {currentDate.format('MMM, YYYY')}</div>
 
       <div className="py-10 flex items-center space-x-3">
@@ -82,14 +75,27 @@ const CustomCalendar = () => {
         <div onClick={prevMonthHandler} className="rounded-full bg-rose-400 p-1 cursor-pointer">
           <MdKeyboardArrowRight size={24} className='rotate-180' />
         </div>
-        <div>CALENDAR: {currentDate.format('MMM, YYYY')}</div>
+        <div className='font-semibold text-xl'>{currentDate.format('MMM, YYYY')}</div>
 
         {/* next button */}
         <div onClick={nextMonthHandler} className="rounded-full bg-rose-400 p-1 cursor-pointer">
           <MdKeyboardArrowRight size={24} />
         </div>
       </div>
-      <div>
+
+
+      <div className='relative'>
+        {showEventDetails &&
+          <div className="absolute bg-zinc-600 w-[300px] h-[300px] z-50">
+            <div
+            onClick={() => setShowEventDetails(false)}
+              className="absolute right-[5px] top-[5px] cursor-pointer">
+              <AiOutlineCloseCircle size={22} />
+            </div>
+            <div>title: {eventData?.title ?? "NA"}</div>
+            <div>desc: {eventData?.desc ?? "NA"}</div>
+          </div>}
+
         <table className='w-full'>
           <tr className=''>
             {weekdays.map((day, index) => (
@@ -100,8 +106,23 @@ const CustomCalendar = () => {
             calendarObject.map((week, index) => (
               <tr className='' key={index}>
                 {week.map((day, index) => (
-                  <td className='border  border-rose-400 h-[130px] bg-gray-700 relative' key={index}>
-                    <div className='absolute top-[5px] left-[5px] text-xl'>{day.date > 0 ? day.date : ""}</div>
+                  <td className='relative border border-rose-400 h-[130px] bg-gray-700' key={index}>
+                    <div className='absolute top-[5px] left-[5px] text-xl text-neutral-300'>{day.date > 0 ? day.date : ""}</div>
+                    <div
+                      className="absolute bottom-[5px] left-[5px] space-y-1">
+                      {day?.event?.map((event, index) => (
+                        <div
+                          // onmouse
+                          onMouseEnter={() => {
+                            setEventData(event);
+                            setShowEventDetails(true);
+                          }}
+                          onMouseLeave={() => {
+                            // setShowEventDetails(false);
+                          }}
+                          className='bg-emerald-700 px-2 rounded-md text-xs' key={index}>{event.title}</div>
+                      ))}
+                    </div>
                   </td>
                 ))}
               </tr>
