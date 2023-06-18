@@ -67,7 +67,10 @@ const CustomCalendar = () => {
       <div
         className='bg-cyan-500 text-white text-center p-2 rounded-md'
       >{weekdays}</div>
-      <div>Current Month: {currentDate.format('MMM, YYYY')}</div>
+      <div>Current Month: {currentDate.format('M')}</div>
+      <div>moment month: {moment().format('M')}</div>
+      <div>current date: {currentDate.format('D')}</div>
+      <div>moment date: {moment().format('D')}</div>
 
       <div className="py-10 flex items-center space-x-3">
 
@@ -88,7 +91,7 @@ const CustomCalendar = () => {
         {showEventDetails &&
           <div className="absolute bg-zinc-600 w-[300px] h-[300px] z-50">
             <div
-            onClick={() => setShowEventDetails(false)}
+              onClick={() => setShowEventDetails(false)}
               className="absolute right-[5px] top-[5px] cursor-pointer">
               <AiOutlineCloseCircle size={22} />
             </div>
@@ -107,12 +110,14 @@ const CustomCalendar = () => {
               <tr className='' key={index}>
                 {week.map((day, index) => (
                   <td className='relative border border-rose-400 h-[130px] bg-gray-700' key={index}>
-                    <div className='absolute top-[5px] left-[5px] text-xl text-neutral-300'>{day.date > 0 ? day.date : ""}</div>
+                    {currentDate.format('M') == moment().format('M') && day.date == moment().format('D') ?
+                      <div className='absolute top-[5px] left-[5px] text-xl border-2 border-rose-400 text-white shadow-lg p-2 rounded-md'>{day.date > 0 ? day.date : ""}</div>
+                      : <div className='absolute top-[5px] left-[5px] text-xl text-neutral-300'>{day.date > 0 ? day.date : ""}</div>
+                    }
                     <div
                       className="absolute bottom-[5px] left-[5px] space-y-1">
                       {day?.event?.map((event, index) => (
                         <div
-                          // onmouse
                           onMouseEnter={() => {
                             setEventData(event);
                             setShowEventDetails(true);
