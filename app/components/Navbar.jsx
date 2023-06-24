@@ -8,7 +8,7 @@ const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
-        <div className="lg:py-5 py-2 w-full shadow-xl bg-[#28282D]">
+        <div className="fixed top-0 lg:py-5 py-2 w-full shadow-xl bg-[#28282D] z-50">
 
             {/* small screen navbar: (smaller than 1024px)*/}
             <div className={`flex flex-col lg:hidden ${isMenuOpen ? "h-[250px]" : "h-[40px]"} transition-all duration-300 px-1`}>

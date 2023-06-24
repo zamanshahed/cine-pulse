@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import CustomSelect from '../components/select/CustomSelect'
 import CustomCalendar from '../components/calendar/CustomCalendar';
+import AnimatedOne from '../components/framer-components/AnimatedOne';
 
 const TestPage = () => {
     const [updateValues, setUpdateValues] = useState("");
@@ -28,6 +29,10 @@ const TestPage = () => {
                 onChange={(e) => setUpdateValues(e.target.value)} 
                 value={updateValues}    
             /> */}
+
+            <div className="py-5">
+                <AnimatedOne />
+            </div>
 
             <div className="pt-10"></div>
             <CustomCalendar />
