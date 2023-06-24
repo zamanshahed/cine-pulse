@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
       <body className={`${inter.className} bg-zinc-700 text-white`}>
         <LoadingModal />
         <Navbar />
-        <div className='max-w-7xl w-full mx-auto p-3 lg:p-5'>
+        <div className='max-w-7xl w-full mx-auto px-3 pt-20 lg:px-5 lg:pt-[120px]'>
           {children}
         </div>
       </body>
