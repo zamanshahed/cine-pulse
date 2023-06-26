@@ -3,6 +3,7 @@ import { useState } from 'react';
 import CustomSelect from '../components/select/CustomSelect'
 import CustomCalendar from '../components/calendar/CustomCalendar';
 import AnimatedOne from '../components/framer-components/AnimatedOne';
+import CustomCarousel from '../components/carousel/CustomCarousel';
 
 const TestPage = () => {
     const [updateValues, setUpdateValues] = useState("");
@@ -12,7 +13,7 @@ const TestPage = () => {
                 className='w-full text-center text-4xl font-extralight text-white italic'
             >PLAY GROUND</div>
 
-            <form onSubmit={(e) => e.preventDefault()} className="pt-10">
+            {/* <form onSubmit={(e) => e.preventDefault()} className="pt-10">
                 <div className='pb-5'>Custom Select</div>
                 <CustomSelect
                     required
@@ -20,7 +21,7 @@ const TestPage = () => {
                     onChange={(e) => setUpdateValues(e.target.value)}
                 />
                 <button className='my-5' type='submit'>Submit</button>
-            </form>
+            </form> */}
 
             {/* <div className="py-10">Update Value: { updateValues}</div>
             <input
@@ -31,11 +32,15 @@ const TestPage = () => {
             /> */}
 
             <div className="py-5">
+                <CustomCarousel />
+            </div>
+
+            <div className="py-5">
                 <AnimatedOne />
             </div>
 
-            <div className="pt-10"></div>
-            <CustomCalendar />
+            {/* <div className="pt-10"></div>
+            <CustomCalendar /> */}
         </div>
     )
 }
