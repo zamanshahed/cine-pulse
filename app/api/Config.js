@@ -7,7 +7,10 @@ const API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY;
 const MOVIE_DETAILS_BASE_URL = `${API_URL}`;
 const SEARCH_BASE_URL = `${API_URL}search/movie?api_key=${API_KEY}&language=en-US&include_adult=false&query=`;
 const SEARCH_BASE_URL_TV = `${API_URL}search/tv?api_key=${API_KEY}&language=en-US&include_adult=false&query=`;
-const POPULAR_BASE_URL = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US`;
+const POPULAR_BASE_URL = `${API_URL}movie/top_rated?api_key=${API_KEY}&language=en-US`;
+const NOW_PLAYING_MOVIES = `${API_URL}movie/now_playing?api_key=${API_KEY}&language=en-US`;
+const UPCOMING_MOVIES = `${API_URL}movie/upcoming?api_key=${API_KEY}&language=en-US`;
+const TV_POPULAR_BASE_URL = `${API_URL}tv/top_rated?api_key=${API_KEY}&language=en-US`;
 
 // For login and voting
 const REQUEST_TOKEN_URL = `${API_URL}authentication/token/new?api_key=${API_KEY}`;
@@ -26,6 +29,9 @@ export {
   SEARCH_BASE_URL,
   SEARCH_BASE_URL_TV,
   POPULAR_BASE_URL,
+  NOW_PLAYING_MOVIES,
+  UPCOMING_MOVIES,
+  TV_POPULAR_BASE_URL,
   API_URL,
   API_KEY,
   IMAGE_BASE_URL,
