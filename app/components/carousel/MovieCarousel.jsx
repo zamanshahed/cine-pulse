@@ -27,24 +27,24 @@ const MovieCarousel = ({ homeMoviesData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0] }) => {
                 }
             }}
             onRequestChange={setActiveSlide}
-            forwardBtnProps={{
-                children: ">",
-                style: {
-                    width: 60,
-                    height: 60,
-                    minWidth: 60,
-                    alignSelf: "center"
-                }
-            }}
-            backwardBtnProps={{
-                children: "<",
-                style: {
-                    width: 60,
-                    height: 60,
-                    minWidth: 60,
-                    alignSelf: "center"
-                }
-            }}
+            // forwardBtnProps={{
+            //     children: ">",
+            //     style: {
+            //         width: 60,
+            //         height: 60,
+            //         minWidth: 60,
+            //         alignSelf: "center"
+            //     }
+            // }}
+            // backwardBtnProps={{
+            //     children: "<",
+            //     style: {
+            //         width: 60,
+            //         height: 60,
+            //         minWidth: 60,
+            //         alignSelf: "center"
+            //     }
+            // }}
 
             itemsToShow={5}
             speed={400}

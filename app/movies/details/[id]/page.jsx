@@ -8,9 +8,10 @@ import { useEffect, useState } from "react"
 import { FcRating } from 'react-icons/fc'
 import MovieGallery from "./MovieGallery";
 import TextTruncate from 'react-text-truncate';
+import MovieCarousel from "@/app/components/carousel/MovieCarousel";
 
 const MovieDetails = ({ params }) => {
-    const { movieDetails, movieDetailsVideos } = useMovieStore();
+    const { movieDetails, movieDetailsVideos, movieDetailsSimilar } = useMovieStore();
     const [showFullText, setShowFullText] = useState(false);
 
     useEffect(() => {
@@ -103,6 +104,13 @@ const MovieDetails = ({ params }) => {
                     </div>
                 </div>
             </div>
+
+            {/* related movies */}
+            <div className="py-5">
+                <div className="text-3xl pb-5 font-extralight">Similar Movies</div>
+                <MovieCarousel homeMoviesData={movieDetailsSimilar} />
+            </div>
+
             <div className="pt-10">
                 <div className="text-3xl pb-5 font-extralight">Gallery</div>
                 <MovieGallery />
