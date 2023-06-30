@@ -24,7 +24,7 @@ const TvSeriesGallery = () => {
         const t_array = [];
         setMovieImages([]);
         let counter = 0;
-        tvSeriesGallery?.map((item) => {
+        tvSeriesGallery?.length > 0 ? tvSeriesGallery?.map((item) => {
             counter++;
             let data = {
                 original: IMAGE_BASE_URL_HD + item?.file_path,
@@ -32,7 +32,7 @@ const TvSeriesGallery = () => {
             }
             if (counter < 6)
                 t_array.push(data);
-        });
+        }) : "No image found for this series";
 
         setMovieImages(t_array);
     }, [tvSeriesGallery]);
