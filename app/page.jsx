@@ -21,8 +21,8 @@ export default function Home() {
       <div className="text-3xl pb-5 font-extralight">Movies On Theatres Now</div>
       <MovieCarousel homeMoviesData={homeMoviesNowPlaying} />
 
-      <div className="text-3xl py-5 font-extralight">Up Coming Movies</div>
-      <MovieCarousel homeMoviesData={homeMoviesUpcoming} />
+      {/* <div className="text-3xl py-5 font-extralight">Up Coming Movies</div>
+      <MovieCarousel homeMoviesData={homeMoviesUpcoming} /> */}
 
       <div className="text-3xl py-5 font-extralight">Popular Movies of All time</div>
       <MovieCarousel homeMoviesData={homeMovies} />
