@@ -22,13 +22,19 @@ const CustomSelect = ({
     const [selectValue, setSelectValue] = useState(value);
     const [selectedLabel, setSelectedLabel] = useState("");
     const [showDropDown, setShowDropDown] = useState(false);
+    const [currentlyFocused, setCurrentlyFocused] = useState('');
 
     const handleSelection = (item) => {
+        setCurrentlyFocused('options');
+
         setSelectValue(item.value);
         setSelectedLabel(item.label);
 
         let res = { target: { value: item.value } };
         onChange(res);
+
+        setShowDropDown(false);
+        setCurrentlyFocused('');
     }
 
     useEffect(() => {
@@ -42,13 +48,12 @@ const CustomSelect = ({
     }, [value]);
     return (
         <div>
-            <div
-                onClick={() => setShowDropDown(!showDropDown)}
-                className={`relative  ${width}`}
-            // onBlur={() => setShowDropDown(false)}
-            >
+            <div className={`relative  ${width}`} >
                 <input
-                    onClick={(e) => { e.preventDefault(); }}
+                    onClick={(e) => { e.preventDefault(); setShowDropDown(true); }}
+                    onBlur={() => {
+                        if (currentlyFocused !== 'options') setShowDropDown(false);
+                    }}
                     type="text"
                     value={selectedLabel}
                     onChange={(e) => {
@@ -62,7 +67,7 @@ const CustomSelect = ({
                         else
                             e.target.setCustomValidity("Select a value from the options");
                     }}
-                    className={`cursor-pointer ${width} py-3 px-2.5 bg-rose-500 rounded-lg outline caret-transparent outline-none`}
+                    className={`cursor-pointer ${width} py-3 px-2.5 bg-rose-500 rounded-lg caret-transparent outline-none`}
                 />
                 <div
                     className={`absolute top-[16px] right-2 ${!showDropDown ? "" : "rotate-180"} transition-all duration-300 cursor-pointer`}
@@ -76,8 +81,6 @@ const CustomSelect = ({
                 {/* options */}
                 {showDropDown &&
                     <div
-                        onFocus={() => setShowDropDown(true)}
-                        onBlur={() => setShowDropDown(false)}
                         className={`absolute z-10 bg-rose-400 rounded-lg overflow-hidden ${width}`}>
                         {data.map((item, index) =>
                             <div
