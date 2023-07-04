@@ -4,24 +4,34 @@ import CustomSelect from '../components/select/CustomSelect'
 import CustomCalendar from '../components/calendar/CustomCalendar';
 import AnimatedOne from '../components/framer-components/AnimatedOne';
 import CustomCarousel from '../components/carousel/CustomCarousel';
+import CustomSelect2 from '../components/select/CustomSelect2';
 
 const TestPage = () => {
     const [updateValues, setUpdateValues] = useState("");
     return (
         <div>
             <div
+                onClick={() => {
+                    console.log('document.activeElement::::', document.activeElement);
+                }}
                 className='w-full text-center text-4xl font-extralight text-white italic'
             >PLAY GROUND</div>
 
-            {/* <form onSubmit={(e) => e.preventDefault()} className="pt-10">
+            <form onSubmit={(e) => e.preventDefault()} className="pt-10">
                 <div className='pb-5'>Custom Select</div>
+                <CustomSelect2
+                    required
+                    value={updateValues}
+                    onChange={(e) => setUpdateValues(e.target.value)}
+                />
+                <div className="pt-10"></div>
                 <CustomSelect
                     required
                     value={updateValues}
                     onChange={(e) => setUpdateValues(e.target.value)}
                 />
                 <button className='my-5' type='submit'>Submit</button>
-            </form> */}
+            </form>
 
             {/* <div className="py-10">Update Value: { updateValues}</div>
             <input
@@ -31,9 +41,9 @@ const TestPage = () => {
                 value={updateValues}    
             /> */}
 
-            <div className="py-5">
+            {/* <div className="py-5">
                 <CustomCarousel />
-            </div>
+            </div> */}
 
             <div className="py-5">
                 <AnimatedOne />
