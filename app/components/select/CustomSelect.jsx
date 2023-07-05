@@ -66,8 +66,6 @@ const CustomSelect = ({
 
         let res = { target: { value: item.value } };
         onChange(res);
-
-        // setIsComponentVisible(false);
     }
 
     useEffect(() => {

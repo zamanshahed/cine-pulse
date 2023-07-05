@@ -5,6 +5,7 @@ import CustomCalendar from '../components/calendar/CustomCalendar';
 import AnimatedOne from '../components/framer-components/AnimatedOne';
 import CustomCarousel from '../components/carousel/CustomCarousel';
 import CustomSelect2 from '../components/select/CustomSelect2';
+import CustomAccordion from '../components/accordion/CustomAccordion';
 
 const TestPage = () => {
     const [updateValues, setUpdateValues] = useState("");
@@ -51,6 +52,13 @@ const TestPage = () => {
 
             {/* <div className="pt-10"></div>
             <CustomCalendar /> */}
+
+            <div className="pt-10">
+                <CustomAccordion
+                    title='What is AI?'
+                    desc='AI is a machine learning system that can learn from data and make decisions based on that data.'
+                />
+            </div>
         </div>
     )
 }
