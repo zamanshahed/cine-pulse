@@ -6,6 +6,7 @@ import AnimatedOne from '../components/framer-components/AnimatedOne';
 import CustomCarousel from '../components/carousel/CustomCarousel';
 import CustomSelect2 from '../components/select/CustomSelect2';
 import CustomAccordion from '../components/accordion/CustomAccordion';
+import CustomFileUploader from '../components/uploader/CustomFileUploader';
 
 const TestPage = () => {
     const [updateValues, setUpdateValues] = useState("");
@@ -25,6 +26,8 @@ const TestPage = () => {
                     value={updateValues}
                     onChange={(e) => setUpdateValues(e.target.value)}
                 />
+                <div className="pt-10"></div>
+                <CustomFileUploader />
                 <div className="pt-10"></div>
                 <CustomSelect
                     required
@@ -50,8 +53,8 @@ const TestPage = () => {
                 <AnimatedOne />
             </div>
 
-            {/* <div className="pt-10"></div>
-            <CustomCalendar /> */}
+            <div className="pt-10"></div>
+            <CustomCalendar />
 
             <div className="pt-10">
                 <CustomAccordion
