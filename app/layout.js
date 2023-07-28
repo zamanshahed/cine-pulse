@@ -1,3 +1,4 @@
+import Footer from './components/Footer'
 import Navbar from './components/Navbar'
 import LoadingModal from './components/modal/LoadingModal'
 import './globals.css'
@@ -18,6 +19,9 @@ export default function RootLayout({ children }) {
         <Navbar />
         <div className='max-w-7xl w-full mx-auto px-3 pt-20 lg:px-5 lg:pt-[120px]'>
           {children}
+        </div>
+        <div className='pt-5 xl:pt-10 w-full text-center pb-5'>
+          <Footer />
         </div>
       </body>
     </html>

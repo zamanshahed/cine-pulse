@@ -18,7 +18,7 @@ export default function Home() {
       }}
     >
       {/* Hey mom, i am coding the Cine Pulse */}
-      <div className="text-3xl pb-5 font-extralight">Movies On Theatres Now</div>
+      <div className="text-3xl pb-5 font-extralight">Recent Movies</div>
       <MovieCarousel homeMoviesData={homeMoviesNowPlaying} />
 
       {/* <div className="text-3xl py-5 font-extralight">Up Coming Movies</div>
