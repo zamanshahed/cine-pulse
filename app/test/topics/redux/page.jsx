@@ -1,9 +1,16 @@
 import React from 'react'
+import TodoItem from './components/TodoItem'
 
-const page = () => {
+const ReduxTopic = () => {
     return (
-        <div>page</div>
+        <div>
+            <div className="text-4xl text-center w-full">Redux Topic: CRUD APP of TODO</div>
+
+            <div className="py-5">
+                <TodoItem label="Cine Pulse" />
+            </div>
+        </div>
     )
 }
 
-export default page
+export default ReduxTopic
